@@ -57,7 +57,7 @@ export default defineConfig(({ mode }) => ({
     },
     middlewareMode: false,
     open: true, // Automatically open the browser
-    port: 8080, // Default port for the development server
+    port: parseInt(process.env.PORT ?? "8080"), // Default port for the development server
   },
   plugins: [
     react(),
