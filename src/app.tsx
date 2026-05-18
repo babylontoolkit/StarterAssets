@@ -62,7 +62,9 @@ function Home() {
         <div>
           <h1>React + Vite + BabylonJS</h1>
         </div>
+        <div>
           <button type="button" className="counter" onClick={handlePlayerDemo}>Player Demo</button>&nbsp;&nbsp;<button type="button" className="counter" onClick={handleVehicleDemo}>Vehicle Demo</button>
+        </div>
       </section>
 
       <div className="ticks"></div>
