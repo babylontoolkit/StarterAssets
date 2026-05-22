@@ -18,7 +18,6 @@ function Home() {
      * GameManager.NavigateTo("/play", {
      *     gameMode: "PlayerControllerDemo",
      *     sceneUrl: GameManager.PlaygroundRepo + "samplescene.gltf",
-     *     projectUrl: GameManager.PlaygroundRepo + "default.playground.js",
      * });
      */
     navigate('/play', {
@@ -26,7 +25,6 @@ function Home() {
         fromApp: true,
         gameMode: 'PlayerControllerDemo',
         sceneUrl: 'https://repo.babylontoolkit.com/playground/samplescene.gltf',
-        projectUrl: 'https://repo.babylontoolkit.com/playground/default.playground.js'
       },
     });
   };
@@ -37,7 +35,6 @@ function Home() {
      * GameManager.NavigateTo("/play", {
      *     gameMode: "VehicleControllerDemo",
      *     sceneUrl: GameManager.PlaygroundRepo + "openterrain.gltf",
-     *     projectUrl: GameManager.PlaygroundRepo + "default.playground.js",
      * });
      */
     navigate('/play', {
@@ -45,7 +42,6 @@ function Home() {
         fromApp: true,
         gameMode: 'VehicleControllerDemo',
         sceneUrl: 'https://repo.babylontoolkit.com/playground/openterrain.gltf',
-        projectUrl: 'https://repo.babylontoolkit.com/playground/default.playground.js'
       },
     });
   };
