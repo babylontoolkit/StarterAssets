@@ -75,7 +75,7 @@ export default defineConfig(({ mode }) => ({
   build: {
     emptyOutDir: true,
     copyPublicDir: true,
-    minify: "oxc",
+    minify: "esbuild",
     target: "esnext",
     sourcemap: false,
     rollupOptions: {
