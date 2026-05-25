@@ -92,19 +92,31 @@ export default defineConfig(({ mode }) => ({
       }
     }
   },
-  optimizeDeps: {
-    exclude: ["babylonjs-inspector"],
-    // Force-prebundle every babylon package on server startup so Vite doesn't
-    // discover a new sub-dep mid-click and trigger a full-page reload that
-    // bounces the user back to "/".
-    include: [
-      "babylonjs",
-      "babylonjs-gui",
-      "babylonjs-addons",
-      "babylonjs-loaders",
-      "babylonjs-materials",
-      "babylonjs-toolkit",
+  resolve: {
+    // Required: prevents dual-instance hazard from file: linked packages
+    // (ESM/node_modules/@babylonjs vs ESM-APP/node_modules/@babylonjs)
+    dedupe: [
+      "@babylonjs/core",
+      "@babylonjs/loaders",
+      "@babylonjs/gui",
+      "@babylonjs/materials",
+      "@babylonjs/serializers",
+      "@babylonjs/addons",
+      "@babylonjs/havok",
     ],
+  },
+  optimizeDeps: {
+    exclude: ["@babylonjs/havok", "@babylonjs/inspector", "@babylonjs-toolkit/next", "@babylonjs-toolkit/next/project"],
+    include: mode === 'development' ? [
+      "@babylonjs/core",
+      "@babylonjs/gui",
+      "@babylonjs/loaders",
+      "@babylonjs/addons",
+      "@babylonjs/materials",
+      "@babylonjs/serializers",
+      "scheduler",
+      "use-sync-external-store/shim"
+    ] : [],
   },
   server: {
     headers: {
@@ -202,25 +214,6 @@ export default defineConfig(({ mode }) => ({
           applyMediaContentType(req, res);
           next();
         });
-      }
-    },
-    {
-      // babylonjs-inspector's bundle references Babylon internals as 'package::BABYLON.*' module IDs.
-      // Rolldown cannot resolve these custom specifiers; we intercept them and return virtual modules
-      // that proxy the matching namespace from the global BABYLON object at runtime.
-      name: "resolve-babylon-inspector-internals",
-      resolveId(source: string) {
-        if (source.includes("::")) {
-          return `\0babylon-ns:${source}`;
-        }
-      },
-      load(id: string) {
-        if (id.startsWith("\0babylon-ns:")) {
-          const namespacePath = id.replace("\0babylon-ns:", "").split("::")[1];
-          // e.g. "BABYLON.Debug" → globalThis.BABYLON?.Debug
-          const access = namespacePath.split(".").join("?.");
-          return `module.exports = (typeof globalThis !== "undefined" ? globalThis : window).${access} ?? {};`;
-        }
       }
     }
   ]
