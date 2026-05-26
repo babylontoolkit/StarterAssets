@@ -4,7 +4,7 @@
  * =================================================================
  * Host Navigation Adapter - React Router DOM
  * =================================================================
- * Bridges react-router-dom hooks into the babylon toolkit's
+ * Bridges react router hooks into the babylon toolkit's
  * UnifiedNavigation context. Replace this file (or pick a different
  * adapter) when porting to TanStack Router, Next.js, etc.
  * =================================================================

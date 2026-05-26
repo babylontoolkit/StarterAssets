@@ -1,16 +1,18 @@
 import { lazy, Suspense } from 'react';
-import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { DefaultBabylonPreloader, babylonLogo } from './babylon/custom/loading';
+import { useUnifiedNavigation } from "./babylon/system/platform";
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './app.css'
 
+
 // Note: All babylon imports stay inside the PlayRoute lazy load chunk
 const PlayRoute = lazy(() => import('./routing/router'));
 
 function Home() {
-  const navigate = useNavigate();
+  const { navigate } = useUnifiedNavigation();
   const handlePlayerDemo = () => {
     /* Use Native Navigation API to prevent ANY BABYLON CODE from being included in the main bundle.
      * This ensures that Babylon and all related dependencies are only loaded when the user clicks "Player Demo", optimizing initial load performance.
