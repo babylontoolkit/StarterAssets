@@ -33,11 +33,25 @@ function Home() {
      * Game code should use game manager, for example:
      * GameManager.NavigateTo("/play", {
      *     gameMode: "VehicleControllerDemo",
-     *     sceneUrl: "https://repo.babylontoolkit.com/playground/openterrain.gltf",
+     *     sceneUrl: "https://repo.babylontoolkit.com/playground/groundplane.gltf",
      * });
      */
     navigate('/play', {
       gameMode: 'VehicleControllerDemo',
+      sceneUrl: 'https://repo.babylontoolkit.com/playground/groundplane.gltf',
+    });
+  };
+  const handleTerrainDemo = () => {
+    /* Use Native Navigation API to prevent ANY BABYLON CODE from being included in the main bundle.
+     * This ensures that Babylon and all related dependencies are only loaded when the user clicks "Terrain Demo", optimizing initial load performance.
+     * Game code should use game manager, for example:
+     * GameManager.NavigateTo("/play", {
+     *     gameMode: "OpenTerrainDemo",
+     *     sceneUrl: "https://repo.babylontoolkit.com/playground/openterrain.gltf",
+     * });
+     */
+    navigate('/play', {
+      gameMode: 'OpenTerrainDemo',
       sceneUrl: 'https://repo.babylontoolkit.com/playground/openterrain.gltf',
     });
   };
@@ -59,7 +73,7 @@ function Home() {
           <h1>React + Vite + BabylonJS</h1>
         </div>
         <div>
-          <button type="button" className="counter" onClick={handlePlayerDemo}>Player Demo</button>&nbsp;&nbsp;<button type="button" className="counter" onClick={handleVehicleDemo}>Vehicle Demo</button>
+          <button type="button" className="counter" onClick={handlePlayerDemo}>Player Demo</button>&nbsp;&nbsp;<button type="button" className="counter" onClick={handleVehicleDemo}>Vehicle Demo</button>&nbsp;&nbsp;<button type="button" className="counter" onClick={handleTerrainDemo}>Terrain Demo</button>
         </div>
       </section>
 
@@ -74,9 +88,9 @@ function Home() {
           <p>Your questions, answered</p>
           <ul>
             <li>
-              <a href="https://github.com/babylontoolkit/agent/blob/main/starthere.md" target="_blank">
+              <a href="https://github.com/BabylonJS/BabylonToolkit" target="_blank">
                 <img className="logo" src={babylonLogo} alt="" />
-                Getting Started
+                Babylon Toolkit
               </a>
             </li>
             <li>
