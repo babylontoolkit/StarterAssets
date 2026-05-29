@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { DefaultBabylonPreloader, babylonLogo } from './babylon/custom/loading';
 import { useUnifiedNavigation } from "./babylon/system/platform";
 import { ReactRouterNavAdapter } from './routing/adpter';
-import codewrxLogo from './assets/codewrx.png'
+import playerLogo from './assets/player.png'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
@@ -66,7 +66,7 @@ function Home() {
             </li>
             <li>
               <a href="https://babylontoolkit.github.io/repo" target="_blank">
-                <img className="logo" src={codewrxLogo} alt="" />
+                <img className="logo" src={playerLogo} alt="" />
                 Asset Library
               </a>
             </li>
