@@ -17,13 +17,13 @@ function Home() {
   const handlePlayerDemo = () => {
     navigate('/play', {
       gameMode: 'PlayerControllerDemo',
-      sceneUrl: 'https://repo.babylontoolkit.com/playground/samplescene.gltf',
+      sceneUrl: 'https://repo.babylontoolkit.com/playground/samplescene.gz.gltf',
     });
   };
   const handleVehicleDemo = () => {
     navigate('/play', {
       gameMode: 'VehicleControllerDemo',
-      sceneUrl: 'https://repo.babylontoolkit.com/playground/openterrain.gltf',
+      sceneUrl: 'https://repo.babylontoolkit.com/playground/openterrain.gz.gltf',
     });
   };
 
