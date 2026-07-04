@@ -29,7 +29,6 @@
     "react-router-dom": "^7.15.0"
   },
   "devDependencies": {
-    "@babylonjs-toolkit/mcp": "^1.0.0",
     "@aws-sdk/client-cloudfront": "^3.654.0",
     "@aws-sdk/client-s3": "^3.654.0",
     "@aws-sdk/credential-providers": "^3.654.0",
