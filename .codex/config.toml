@@ -1,0 +1,6 @@
+default_permissions = "workspace"
+
+[permissions.workspace.network]
+enabled = true
+mode = "limited"
+allowed_domains = ["github.com", "raw.githubusercontent.com"]
