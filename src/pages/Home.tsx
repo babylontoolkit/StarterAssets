@@ -1,5 +1,5 @@
 import { useUnifiedNavigation } from "../babylon/system/platform";
-import { babylonLogo } from '../babylon/custom/loading';
+import { babylonLogo } from '../custom/loading';
 import playerLogo from '../assets/player.png'
 import reactLogo from '../assets/react.svg'
 import viteLogo from '../assets/vite.svg'
