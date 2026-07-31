@@ -71,7 +71,7 @@ function applyMediaContentType(req: Connect.IncomingMessage, res: { setHeader: (
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: "/", // Ensures assets are correctly referenced
+  base: "./", // Relative: the build must boot under ANY serving prefix (shares are served at /play/<id>/, never an origin root)
   build: {
     emptyOutDir: true,
     copyPublicDir: true,
