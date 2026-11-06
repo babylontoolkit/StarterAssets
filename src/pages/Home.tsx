@@ -1,5 +1,7 @@
+import { useRef, useState } from 'react';
 import { useUnifiedNavigation } from "../babylon/system/platform";
 import { babylonLogo } from '../chrome/loading';
+import { ContentInstallPanel, useContentInstaller } from '../chrome/content-installer';
 import playerLogo from '../assets/player.png'
 import reactLogo from '../assets/react.svg'
 import viteLogo from '../assets/vite.svg'
@@ -8,6 +10,23 @@ import './Home.css'
 
 function Home() {
   const { navigate } = useUnifiedNavigation();
+  const { state: installerState } = useContentInstaller();
+  const downloadDialogRef = useRef<HTMLDialogElement | null>(null);
+  const [isDownloadDialogOpen, setDownloadDialogOpen] = useState<boolean>(false);
+  // The Download button appears only while the content installer runs (VITE_CONTENT_INSTALLER=on and supported here).
+  const showDownloadControls: boolean = installerState != null && installerState.availability !== 'disabled';
+  const downloadButtonLabel: string = installerState?.everythingInstalled === true ? 'Downloaded ✓' : 'Download';
+
+  /** Opens the Download Game Data dialog as a modal (Escape closes it). */
+  const openDownloadDialog = (): void => {
+    downloadDialogRef.current?.showModal();
+    setDownloadDialogOpen(true);
+  };
+  /** Closes the Download Game Data dialog (a running download keeps going). */
+  const closeDownloadDialog = (): void => {
+    downloadDialogRef.current?.close();
+  };
+
   const handlePlayerDemo = () => {
     navigate('/play', {
       gameMode: 'PlayerControllerDemo',
@@ -40,6 +59,16 @@ function Home() {
         <div>
           <button type="button" className="counter" onClick={handlePlayerDemo}>Player Demo</button>&nbsp;&nbsp;<button type="button" className="counter" onClick={handleVehicleDemo}>Vehicle Demo</button>
         </div>
+        {showDownloadControls && (
+          <section className="home-download" aria-label="Game data">
+            <button type="button" className="counter" aria-haspopup="dialog" onClick={openDownloadDialog}>
+              {downloadButtonLabel}
+            </button>
+            <dialog className="home-download-dialog" aria-label="Download Game Data" ref={downloadDialogRef} onClose={() => setDownloadDialogOpen(false)}>
+              {isDownloadDialogOpen && <ContentInstallPanel onClose={closeDownloadDialog} />}
+            </dialog>
+          </section>
+        )}
       </section>
 
       <div className="ticks"></div>
